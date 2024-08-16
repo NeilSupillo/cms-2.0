@@ -1,5 +1,5 @@
 <?php
-include("templates/header.php");
+include("template/header.php");
 
 ?>
 <div class="post-list mt-5">
@@ -22,5 +22,5 @@ include("templates/header.php");
 </div>
 
 <?php
-include("templates/footer.php");
+include("template/footer.php");
 ?>

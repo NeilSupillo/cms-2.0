@@ -1,5 +1,5 @@
 <?php
-include("templates/header.php");
+include("template/header.php");
 
 ?>
 <div class="post-list mt-5">
@@ -16,7 +16,9 @@ include("templates/header.php");
                     <?php echo $data["content"]; ?>
                 </div>
                 <div class="col-sm-2">
-                    <a href="user/<?php echo $data['id']; ?>" class="btn btn-primary">READ MORE</a>
+                    <!-- <a href="user/<?php echo $data['id']; ?>" class="btn btn-primary">READ MORE</a> -->
+                    <a href="user?id=<?php echo $data['id']; ?>" class="btn btn-primary">READ MORE</a>
+
                 </div>
             </div>
         <?php endforeach; ?>
@@ -26,5 +28,5 @@ include("templates/header.php");
 
 
 <?php
-include("templates/footer.php");
+include("template/footer.php");
 ?>

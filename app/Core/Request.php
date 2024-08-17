@@ -13,11 +13,10 @@ class Request
         $path = trim($path, '/');
         $path = str_replace(trim($base_path, '/'), '', $path); // Remove the base path
 
-        return $path = str_replace(trim($base_path, '/'), '', $path); // Remove the base path
-
+        $path = str_replace(trim($base_path, '/'), '', $path); // Remove the base path
+        //   dd($path);
+        return $path;
         // Split the path into parts
-
-
         $pathParts = array_filter(explode('/', $path));
 
         // if (!empty($pathParts[2])) {
@@ -29,9 +28,13 @@ class Request
     {
         return $_SERVER['REQUEST_METHOD'];
     }
-    public static function urlId()
+    public static function getUrlId()
     {
         return isset($_GET['id']) ? $_GET['id'] : dd("no id set");
+    }
+    public static function postUrlId()
+    {
+        return isset($_POST['id']) ? $_POST['id'] : dd("no id set");
     }
     public static function values()
     {

@@ -49,18 +49,40 @@ if (!function_exists('startSession')) {
 if (!function_exists('getSession')) {
     function getSession($name)
     {
-        return $_SESSION[$name];
+
+        return isset($_SESSION[$name]) ? $_SESSION[$name] : "";
     }
 }
 if (!function_exists('unsetSession')) {
     function unsetSession($name)
     {
-        return $_SESSION[$name];
+        unset($_SESSION[$name]);
     }
 }
 if (!function_exists('redirect')) {
     function redirect($name)
     {
+
         header("Location: {$name}");
+    }
+}
+if (!function_exists('validate')) {
+    function validate($data)
+    {
+        $errors = [];
+
+        if (empty(trim($data['title'] ?? ''))) {
+            $errors['title'] = 'Title is required.';
+        }
+
+        if (empty(trim($data['summary'] ?? ''))) {
+            $errors['summary'] = 'Summary is required.';
+        }
+
+        if (empty(trim($data['content'] ?? ''))) {
+            $errors['content'] = 'Content is required.';
+        }
+
+        return $errors;
     }
 }

@@ -25,8 +25,4 @@ class PostsController
         $post = (new Post)->getOnePost('posts', $id);
         return view('read', ['post' => $post]);
     }
-    public function store()
-    {
-        //(new Post)->storePost(Request::values());
-    }
 }

@@ -4,12 +4,12 @@ use App\App;
 use Database\Connection;
 
 if (!function_exists('view')) {
-    function view($view, $data = null)
+    function view($view, $loc, $data = null)
     {
         if ($data !== null) {
             extract($data);
         }
-        require __DIR__ . "/../Views/{$view}View.php";
+        require __DIR__ . "/../Views/{$loc}/{$view}View.php";
     }
 }
 if (!function_exists('dd')) {

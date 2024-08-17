@@ -43,6 +43,6 @@ include("templates/header.php");
 unsetSession('errors');
 unsetSession('old');
 unsetSession('success');
-dd($_SESSION);
+
 include("templates/footer.php");
 ?>

@@ -13,7 +13,7 @@ class AdminController
         if (isset($_SESSION["user"])) {
 
             $posts = (new Admin)->getAll('posts');
-            return view('admin', ['posts' => $posts]);
+            return view('admin', 'admin', ['posts' => $posts]);
         } else {
 
             redirect("login");
@@ -21,7 +21,7 @@ class AdminController
     }
     public function loginPage()
     {
-        return view('login');
+        return view('login', 'admin');
     }
     public function loginCheck()
     {
@@ -33,7 +33,7 @@ class AdminController
                 redirect("/project/admin");
             }
         }
-        view("login");
+        view("login", 'admin');
     }
     public function logout()
     {
@@ -51,7 +51,7 @@ class AdminController
         }
         $posts = (new Admin)->getOne('posts', $id);
 
-        return view('view', ['post' => $posts]);
+        return view('view', 'admin', ['post' => $posts]);
     }
     public function editPage()
     {
@@ -63,7 +63,7 @@ class AdminController
         }
         $posts = (new Admin)->getOne('posts', $id);
 
-        return view('edit', ['post' => $posts]);
+        return view('edit', 'admin', ['post' => $posts]);
     }
     public function edit()
     {
@@ -83,7 +83,7 @@ class AdminController
     }
     public function createPage()
     {
-        return view('create', [
+        return view('create', 'admin', [
             'errors' => getSession('errors'),
             'old' => getSession('old'),
         ]);

@@ -12,7 +12,7 @@ class PostsController
     {
         // posts is table name;
         $posts = (new Post)->getAllPosts('posts');
-        return view('index', ['posts' => $posts]);
+        return view('index', 'home', ['posts' => $posts]);
     }
     public function getOne()
     {
@@ -23,6 +23,6 @@ class PostsController
             dd("error : id not set");
         }
         $post = (new Post)->getOnePost('posts', $id);
-        return view('read', ['post' => $post]);
+        return view('read', 'home', ['post' => $post]);
     }
 }

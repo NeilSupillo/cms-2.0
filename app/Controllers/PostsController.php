@@ -18,7 +18,7 @@ class PostsController
     {
         // posts is table name;
         //$id = Request::getId();
-        $id = Request::urlId();
+        $id = Request::getUrlId();
         if ($id == null) {
             dd("error : id not set");
         }

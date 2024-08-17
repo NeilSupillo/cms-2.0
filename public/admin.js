@@ -13,6 +13,17 @@ function confirmDelete() {
   const id = document
     .getElementById("confirmDeleteButton")
     .getAttribute("data-id");
-  console.log(id);
-  window.location.href = "admin/delete?id=" + id;
+  const form = document.createElement("form");
+  form.method = "POST";
+  form.action = "/project/admin/delete";
+
+  // Create a hidden input field for the ID
+  const input = document.createElement("input");
+  input.type = "hidden";
+  input.name = "id";
+  input.value = id;
+  form.appendChild(input);
+
+  document.body.appendChild(form);
+  form.submit();
 }

@@ -22,3 +22,4 @@ $router->get('/admin/create', 'AdminController@createPage');
 $router->post('/admin/create', 'AdminController@create');
 $router->post('/admin/edit', 'AdminController@edit');
 $router->post('/admin/login', 'AdminController@loginCheck');
+$router->post('/admin/delete', 'AdminController@deleteUser');

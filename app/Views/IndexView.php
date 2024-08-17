@@ -16,8 +16,8 @@ include("template/header.php");
                     <?php echo $data["content"]; ?>
                 </div>
                 <div class="col-sm-2">
-                    <!-- <a href="user/<?php echo $data['id']; ?>" class="btn btn-primary">READ MORE</a> -->
-                    <a href="user?id=<?php echo $data['id']; ?>" class="btn btn-primary">READ MORE</a>
+
+                    <a href="/project/user?id=<?php echo $data['id']; ?>" class="btn btn-primary">READ MORE</a>
 
                 </div>
             </div>

@@ -48,16 +48,28 @@ class Admin
     }
     public function updateOne($tableName, $data)
     {
+
         try {
-            $query = "UPDATE " . $this->table_name . " SET title=:title, content=:content, summary=:summary, date=:date WHERE id = :id";
-            $stmt = $this->conn->prepare($query);
+            $query = "UPDATE " . $tableName . " SET title=:title, content=:content, summary=:summary, date=:date WHERE id = :id";
+            $stmt = connect()->prepare($query);
 
-            $stmt->bindParam(":title", $this->title);
-            $stmt->bindParam(":content", $this->content);
-            $stmt->bindParam(":summary", $this->summary);
-            $stmt->bindParam(":date", $this->date);
-            $stmt->bindParam(":id", $this->id);
+            $stmt->bindParam(":title", $data["title"]);
+            $stmt->bindParam(":content", $data["content"]);
+            $stmt->bindParam(":summary", $data["summary"]);
+            $stmt->bindParam(":date", $data["date"]);
+            $stmt->bindParam(":id", $data["id"]);
 
+            $stmt->execute();
+        } catch (\Throwable $th) {
+            throw $th->getMessage();
+        }
+    }
+    public function deleteOne($tableName, $id)
+    {
+        try {
+            $query = "DELETE FROM " . $tableName . " WHERE id = :id";
+            $stmt = connect()->prepare($query);
+            $stmt->bindParam(":id", $id);
             $stmt->execute();
         } catch (\Throwable $th) {
             throw $th->getMessage();

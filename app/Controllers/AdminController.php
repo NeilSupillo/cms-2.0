@@ -44,7 +44,7 @@ class AdminController
     public function view()
     {
 
-        $id = Request::urlId();
+        $id = Request::getUrlId();
 
         if ($id == null) {
             dd("error : id not set");
@@ -73,9 +73,13 @@ class AdminController
         if ($id == null) {
             dd("error : id {$id} no valid");
         }
-        $posts = (new Admin)->updateOne('posts', $id);
+        $data = Request::values();
 
-        return view('edit', ['post' => $posts]);
+
+        (new Admin)->updateOne('posts', $data);
+        setSession('update', 'Post edited successfully!');
+
+        redirect("/project/admin");
     }
     public function createPage()
     {
@@ -110,9 +114,17 @@ class AdminController
             (new Admin)->store('posts', $data);
 
             // Set success message and redirect
-            setSession('success', 'Post created successfully!');
+            setSession('create', 'Post created successfully!');
             //dd("sucess");
             redirect('/project/admin');
         }
+    }
+    public function deleteUser()
+    {
+
+        $id = Request::postUrlId();
+        (new Admin)->deleteOne('posts', $id);
+        setSession('delete', 'Post deleted successfully!');
+        redirect('/project/admin');
     }
 }

@@ -53,8 +53,8 @@ include("templates/header.php");
 <!-- Pop-up -->
 <div id="popup" class="popup">
     <p>Are you sure you want to delete this item?</p>
-    <button onclick="confirmDelete()" id="confirmDeleteButton">Yes</button>
-    <button onclick="hidePopup()">No</button>
+    <button class="btn bg-danger text-light" onclick="confirmDelete()" id="confirmDeleteButton">Yes</button>
+    <button class="btn bg-dark text-light" onclick="hidePopup()">No</button>
 </div>
 <?php
 include("templates/footer.php");

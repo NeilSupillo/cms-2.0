@@ -21,7 +21,13 @@ class AdminController
     }
     public function loginPage()
     {
-        return view('login', 'admin');
+        if (isset($_SESSION["user"])) {
+
+            redirect("/project/admin");
+        } else {
+
+            return view('login', 'admin');
+        }
     }
     public function loginCheck()
     {
@@ -31,9 +37,13 @@ class AdminController
             if ($username == "admin" && $password == "pass") {
                 $_SESSION["user"] = "admin";
                 redirect("/project/admin");
+            } else {
+                $_SESSION['error'] = "Wrong credentials";
+                redirect("/project/admin/login");
             }
+        } else {
+            redirect("/project/admin/login");
         }
-        view("login", 'admin');
     }
     public function logout()
     {

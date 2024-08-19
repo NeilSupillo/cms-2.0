@@ -6,9 +6,11 @@ use Database\Connection;
 if (!function_exists('view')) {
     function view($view, $loc, $data = null)
     {
+
         if ($data !== null) {
             extract($data);
         }
+
         require __DIR__ . "/../Views/{$loc}/{$view}View.php";
     }
 }

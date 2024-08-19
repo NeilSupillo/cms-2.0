@@ -25,7 +25,8 @@ class Post
             $query = "SELECT * FROM " . $tableName;
             $stmt = connect()->prepare($query);
             $stmt->execute();
-            return $stmt;
+            $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            return $results;
         } catch (\Throwable $th) {
             throw $th->getMessage();
         }

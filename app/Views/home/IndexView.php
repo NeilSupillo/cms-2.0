@@ -4,7 +4,9 @@ include("template/header.php");
 ?>
 <div class="post-list mt-5">
     <div class="container">
+
         <?php foreach ($posts as $data) : ?>
+
             <div class="row mb-4 p-5 bg-light">
                 <div class="col-sm-2">
                     <?php echo $data["date"]; ?>
@@ -28,5 +30,6 @@ include("template/header.php");
 
 
 <?php
+
 include("template/footer.php");
 ?>

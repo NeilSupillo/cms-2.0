@@ -27,7 +27,7 @@ class Router
     public function show($uri, $method)
     {
 
-        //dd($uri);
+
         if (array_key_exists($uri, $this->routes[$method])) {
             $contrActArray = (explode('@', $this->routes[$method][$uri]));
 

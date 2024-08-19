@@ -12,6 +12,7 @@ class PostsController
     {
         // posts is table name;
         $posts = (new Post)->getAllPosts('posts');
+        //dd($posts);
         return view('index', 'home', ['posts' => $posts]);
     }
     public function getOne()

@@ -8,6 +8,6 @@ use App\{App, Router, Request};
 
 
 // $pdo = Connection::make(App::get('config'));
-CreateTable::postsTable(connect());
+//CreateTable::postsTable(connect());
 
 Router::load("routes.php")->show(Request::uri(), Request::method());

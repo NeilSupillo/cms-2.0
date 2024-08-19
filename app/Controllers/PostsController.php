@@ -20,10 +20,9 @@ class PostsController
         // posts is table name;
         //$id = Request::getId();
         $id = Request::getUrlId();
-        if ($id == null) {
-            dd("error : id not set");
-        }
+
         $post = (new Post)->getOnePost('posts', $id);
+        check_data($post);
         return view('read', 'home', ['post' => $post]);
     }
 }

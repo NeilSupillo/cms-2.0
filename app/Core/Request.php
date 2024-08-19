@@ -30,11 +30,11 @@ class Request
     }
     public static function getUrlId()
     {
-        return isset($_GET['id']) ? $_GET['id'] : dd("no id set");
+        return isset($_GET['id']) ? $_GET['id'] : noId();
     }
     public static function postUrlId()
     {
-        return isset($_POST['id']) ? $_POST['id'] : dd("no id set");
+        return isset($_POST['id']) ? $_POST['id'] : noId();
     }
     public static function values()
     {

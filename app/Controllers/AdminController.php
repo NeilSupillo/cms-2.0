@@ -10,14 +10,10 @@ class AdminController
     public function index()
     {
 
-        if (isset($_SESSION["user"])) {
+        isAuth();
 
-            $posts = (new Admin)->getAll('posts');
-            return view('admin', 'admin', ['posts' => $posts]);
-        } else {
-
-            redirect("login");
-        }
+        $posts = (new Admin)->getAll('posts');
+        return view('admin', 'admin', ['posts' => $posts]);
     }
     public function loginPage()
     {
@@ -54,49 +50,57 @@ class AdminController
     public function view()
     {
 
+        isAuth();
         $id = Request::getUrlId();
 
-        if ($id == null) {
-            dd("error : id not set");
-        }
-        $posts = (new Admin)->getOne('posts', $id);
 
+        $posts = (new Admin)->getOne('posts', $id);
+        check_data($posts);
         return view('view', 'admin', ['post' => $posts]);
     }
     public function editPage()
     {
 
+        isAuth();
         $id = Request::getUrlId();
 
-        if ($id == null) {
-            dd("error : id {$id} no valid");
-        }
         $posts = (new Admin)->getOne('posts', $id);
-
-        return view('edit', 'admin', ['post' => $posts]);
+        check_data($posts);
+        return view('edit', 'admin', ['post' => $posts, 'errors' => getSession('errors')]);
     }
     public function edit()
     {
         //dd(Request::values());
         $id = Request::postUrlId();
         //dd($id);
-        if ($id == null) {
-            dd("error : id {$id} no valid");
-        }
+
         $data = Request::values();
+        $errors = validate($data);
 
+        if (!empty($errors)) {
+            // If there are errors, set them in the session and redirect back
+            setSession('errors', $errors);
 
-        (new Admin)->updateOne('posts', $data);
-        setSession('update', 'Post edited successfully!');
+            redirect('/project/admin/edit?id=' . $id);
+            dd("why");
+        } else {
 
-        redirect("/project/admin");
+            (new Admin)->updateOne('posts', $data);
+            setSession('update', 'Post edited successfully!');
+
+            redirect("/project/admin");
+        }
     }
     public function createPage()
     {
+
+        isAuth();
         return view('create', 'admin', [
             'errors' => getSession('errors'),
             'old' => getSession('old'),
         ]);
+
+
 
         // Clear session errors after they've been used
 
@@ -118,15 +122,16 @@ class AdminController
                 setSession('old', $data); // Keep old input
                 //dd($_SESSION);
                 redirect('create');
+            } else {
+
+                // Save the post to the database (you'll implement this method)
+                (new Admin)->store('posts', $data);
+
+                // Set success message and redirect
+                setSession('create', 'Post created successfully!');
+                //dd("sucess");
+                redirect('/project/admin');
             }
-
-            // Save the post to the database (you'll implement this method)
-            (new Admin)->store('posts', $data);
-
-            // Set success message and redirect
-            setSession('create', 'Post created successfully!');
-            //dd("sucess");
-            redirect('/project/admin');
         }
     }
     public function deleteUser()

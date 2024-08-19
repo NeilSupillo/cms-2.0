@@ -3,6 +3,23 @@
 use App\App;
 use Database\Connection;
 
+if (!function_exists('check_data')) {
+    function check_data($data)
+    {
+        if (!$data) {
+            require __DIR__ . "/../Views/404.php";
+            exit();
+        }
+    }
+}
+if (!function_exists('noId')) {
+    function noId()
+    {
+
+        require __DIR__ . "/../Views/noid.php";
+        exit();
+    }
+}
 if (!function_exists('view')) {
     function view($view, $loc, $data = null)
     {
@@ -86,5 +103,15 @@ if (!function_exists('validate')) {
         }
 
         return $errors;
+    }
+}
+if (!function_exists('isAuth')) {
+    function isAuth()
+    {
+
+        if (!isset($_SESSION["user"])) {
+
+            return redirect("/project/admin/login");
+        }
     }
 }

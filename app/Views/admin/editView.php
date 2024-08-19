@@ -8,12 +8,15 @@ include("templates/header.php");
 
         <div class="form-field mb-4">
             <input type="text" class="form-control" name="title" id="" placeholder="Enter Title:" value="<?php echo $post['title']; ?>">
+            <span class="error"><?= htmlspecialchars($errors['title'] ?? '') ?></span>
         </div>
         <div class="form-field mb-4">
             <textarea name="summary" class="form-control" id="" cols="30" rows="10" placeholder="Enter Summary:"><?php echo $post['summary']; ?></textarea>
+            <span class="error"><?= htmlspecialchars($errors['summary'] ?? '') ?></span>
         </div>
         <div class="form-field mb-4">
             <textarea name="content" class="form-control" id="" cols="30" rows="10" placeholder="Enter Post:"><?php echo $post['content']; ?></textarea>
+            <span class="error"><?= htmlspecialchars($errors['content'] ?? '') ?></span>
         </div>
         <input type="hidden" name="date" value="<?php echo date("Y/m/d"); ?>">
         <input type="hidden" name="id" value="<?php echo $post['id']; ?>">
@@ -25,5 +28,6 @@ include("templates/header.php");
     </form>
 </div>
 <?php
+unsetSession('errors');
 include("templates/footer.php");
 ?>
